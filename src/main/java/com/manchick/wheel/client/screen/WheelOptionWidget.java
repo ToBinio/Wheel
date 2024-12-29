@@ -7,6 +7,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -66,7 +67,7 @@ public class WheelOptionWidget extends ButtonWidget {
         context.fill(x, y, x + width, y + height, color);
         ItemStack preview = widget.getStack();
         if(preview.isEmpty()) {
-            context.drawTexture(EMPTY, contentX, contentY, 0, 0, 16, 16, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured,EMPTY, contentX, contentY, 0, 0, 16, 16, 16, 16);
             return;
         }
         context.drawItem(preview, contentX, contentY);

@@ -16,7 +16,7 @@ public class SuggestAction extends Action {
 
     public static final MapCodec<SuggestAction> CODEC = RecordCodecBuilder.mapCodec(instance -> {
          return instance.group(Codec.STRING.fieldOf("content").forGetter(SuggestAction::getContent),
-                Codecs.NONNEGATIVE_INT.fieldOf("cursor").orElse(-1).forGetter(SuggestAction::getCursor))
+                Codecs.NON_NEGATIVE_INT.fieldOf("cursor").orElse(-1).forGetter(SuggestAction::getCursor))
                 .apply(instance, SuggestAction::new);
     });
 

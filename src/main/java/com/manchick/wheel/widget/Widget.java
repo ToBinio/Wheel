@@ -29,7 +29,7 @@ public record Widget(Text label, Either<RegistryEntry<Item>, ItemStack> preview,
 
     public static final Codec<Widget> CODEC = RecordCodecBuilder.create(instance -> {
         return instance.group(TextCodecs.CODEC.fieldOf("label").forGetter(Widget::label),
-                Codec.either(ItemStack.ITEM_CODEC, ItemStack.CODEC).fieldOf("preview").forGetter(Widget::preview),
+                Codec.either(Item.ENTRY_CODEC, ItemStack.CODEC).fieldOf("preview").forGetter(Widget::preview),
                 Codec.list(Action.CODEC).fieldOf("actions").forGetter(Widget::actions),
                 Codec.optionalField("take_slot", WidgetSlot.CODEC, false).forGetter(Widget::takenSlot),
                 Codec.BOOL.fieldOf("keep_opened").orElse(false).forGetter(Widget::keepOpened))
